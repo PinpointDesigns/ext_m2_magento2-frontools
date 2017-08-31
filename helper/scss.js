@@ -31,6 +31,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
   theme.locale.forEach(locale => {
     dest.push(config.projectPath + theme.dest + '/' + locale);
   });
+  var replace = require('gulp-string-replace');
 
   return gulp.src(
     file || srcBase + '/**/*.scss',
@@ -51,6 +52,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     )
     .pipe(plugins.if(production, plugins.postcss([plugins.cssnano()])))
     .pipe(plugins.if(postcss.length, plugins.postcss(postcss || [])))
+    .pipe(replace(new RegExp('@charset "UTF-8";', 'g'), ''))
     .pipe(plugins.if(!disableMaps && !production, plugins.sourcemaps.write()))
     .pipe(plugins.if(production && !disableSuffix, plugins.rename({ suffix: '.min' })))
     .pipe(plugins.rename(adjustDestinationDirectory))

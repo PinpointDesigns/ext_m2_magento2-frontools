@@ -55,6 +55,7 @@
   },
   "devDependencies": {
     "breakpoint-sass": "^2.7.1",
+    "gulp-string-replace": "^0.4.0",
     "susy": "^2.2.12"
   }
 }
