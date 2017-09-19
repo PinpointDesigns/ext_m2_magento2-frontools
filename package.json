@@ -1,5 +1,6 @@
 {
   "name": "magento2-frontools",
+  "version": "1.5.8",
   "author": {
     "name": "Bartek Igielski",
     "email": "igloczek@gmail.com"
@@ -7,7 +8,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/SnowdogApps/magento2-frontools"
+    "url": "https://github.com/PinpointDesigns/ext_m2_magento2-frontools"
   },
   "license": "MIT",
   "dependencies": {
@@ -56,6 +57,6 @@
   },
   "devDependencies": {
     "breakpoint-sass": "^2.7.1",
-    "susy": "^2.2.12"
+    "susy": "3.0.1"
   }
 }

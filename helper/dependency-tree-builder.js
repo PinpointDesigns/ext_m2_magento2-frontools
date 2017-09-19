@@ -4,7 +4,7 @@ module.exports = function(plugins, file) { // eslint-disable-line func-names
     if (plugins.fs.existsSync(file)) {
       const content = plugins.fs.readFileSync(file, 'utf8'),
             path    = file.replace(/(.*)\/.*/g, '$1'),
-            regex   = /(?:\n@import )(?:'|")(.*)(?:'|")/g;
+            regex   = /^(?:\s*@import )(?:'|")(.*)(?:'|")/gm;
 
       let result  = regex.exec(content),
           imports = [];
@@ -19,7 +19,12 @@ module.exports = function(plugins, file) { // eslint-disable-line func-names
             parentPath = parentPath.replace(/\/[^\/]+$/g, '');
             filePath = filePath.replace(/\.\.\//, '');
             const filePathParts = /(.*)\/(.*)/g.exec(filePath);
-            fullPath = parentPath + '/' + filePathParts[1] + '/_' + filePathParts[filePathParts.length - 1] + '.scss';
+            if (filePathParts) {
+              fullPath = parentPath + '/' + filePathParts[1] + '/_' + filePathParts[filePathParts.length - 1] + '.scss';
+            }
+            else {
+              fullPath = parentPath + '/_' + filePath + '.scss';
+            }
           }
         }
         else {

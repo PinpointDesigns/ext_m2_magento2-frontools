@@ -18,6 +18,24 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     dest.push(config.projectPath + theme.dest + '/' + locale);
   });
 
+  // Cleanup existing files from pub to remove symlinks
+  plugins.globby.sync(file || srcBase + '/**/*.babel.js')
+    .forEach(file => {
+      theme.locale.forEach(locale => {
+        plugins.fs.removeSync(
+          file
+            .replace(
+              srcBase,
+              config.projectPath + theme.dest + '/' + locale
+            )
+            .replace(
+              new RegExp('web\/([^_]*)$'),
+              '$1'
+            )
+        );
+      });
+    });
+
   return gulp.src(
     file || srcBase + '/**/*.babel.js',
     { base: srcBase }
