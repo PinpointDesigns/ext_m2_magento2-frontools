@@ -2,16 +2,31 @@
 options:
   merge-default-rules: false
 
+# File Ignores
+files:
+  ignore:
+    - '/private/var/www/*/vendor/**/*.scss'
+
 # Rule Configuration
 rules:
+  border-zero:
+    - 2
+    -
+      convention: 'none'
   brace-style:
     - 2
     -
       style: 'stroustrup'
-      clean-import-paths: 2
+  clean-import-paths: 2
+  declarations-before-nesting: 2
+  empty-line-between-blocks:
+    - 2
+    -
+      include: false
+      allow-single-line-rulesets: false
   extends-before-declarations: 2
   extends-before-mixins: 2
-  final-newline: 2
+  final-newline: 1
   indentation:
     - 2
     -
@@ -20,8 +35,15 @@ rules:
     - 2
     -
       include: true
+  mixins-before-declarations: 2
+  nesting-depth:
+    - 2
+    -
+      max-depth: 3
+  no-color-keywords: 2
   no-css-comments: 2
   no-debug: 1
+  no-duplicate-properties: 2
   no-empty-rulesets: 2
   no-ids: 1
   no-important: 1
@@ -32,14 +54,22 @@ rules:
       extra-properties:
         - 'touch-callout'
         - 'overflow-scrolling'
+  no-url-domains: 1
   no-vendor-prefixes: 1
   no-warn: 1
   one-declaration-per-line: 2
+  placeholder-in-extend: 2
+  pseudo-element: 2
+  quotes:
+    - 2
+    -
+      style: 'double'
   single-line-per-selector: 2
   space-after-colon: 2
   space-after-comma: 2
   space-around-operator: 2
   space-before-bang: 2
   space-before-brace: 2
+  space-between-parens: 2
   trailing-semicolon: 2
   zero-unit: 2
